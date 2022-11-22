@@ -13,6 +13,7 @@ class De:
     Attributes:
         valeur (int): Un nombre de 1 à 6 inclusivement.
     """
+
     def __init__(self):
         """
         Constructeur de la classe De.
@@ -36,8 +37,8 @@ class De:
         if self.valeur == 1:
             self.valeur = 'X'
         elif mode == 2:
-            list = ['⚁','⚂','⚃','⚄','⚅']
-            return list[int(self.valeur)-2]
+            list = ['⚁', '⚂', '⚃', '⚄', '⚅']
+            return list[int(self.valeur) - 2]
         return f'{self.valeur}'
 
     def lancer(self):

@@ -16,7 +16,7 @@ class Joueur:
         des (list): Les dés possédés par le joueur.
         arene (Arene): Référence vers l'arène du jeu.
     """
-    
+
     def __init__(self, numero_joueur, des_initiaux, arene):
         """
         Constructeur de la classe Joueur.
