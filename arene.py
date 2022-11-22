@@ -17,6 +17,7 @@ class Arene:
                     où emplacement est un tuple de coordonnées (x,y) et dé est une istance de la classe Dé.
         mode_affichage (int): Le mode d'affichage (1 pour [X,2,3,4,5,6] ou 2 pour [X,⚁,⚂,⚃,⚄,⚅])
     """
+
     def __init__(self, dimension, de_initial, mode_affichage):
         """
         Constructeur de la classe Arene.

@@ -40,11 +40,11 @@ def demander_entier(nom_entier, valeur_defaut, entier_minimum=None, entier_maxim
             if entier_trop_petit:
                 print(
                     "Entrée invalide: {} doit être un entier plus grand ou égal à {}. "
-                        .format(nom_entier, entier_minimum))
+                    .format(nom_entier, entier_minimum))
             elif entier_trop_grand:
                 print(
                     "Entrée invalide: {} doit être un entier plus petit ou égal à {}. "
-                        .format(nom_entier, entier_maximum))
+                    .format(nom_entier, entier_maximum))
             entree_invalide = entier_trop_petit or entier_trop_grand
     return entier
 
