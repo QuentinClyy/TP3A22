@@ -36,8 +36,8 @@ class De:
         if self.valeur == 1:
             self.valeur = 'X'
         elif mode == 2:
-            list = ['⚁','⚂','⚃','⚄','⚅']
-            return list[int(self.valeur)-2]
+            liste = ['⚁', '⚂', '⚃', '⚄', '⚅']
+            return liste[int(self.valeur)-2]
         return f'{self.valeur}'
 
     def lancer(self):
