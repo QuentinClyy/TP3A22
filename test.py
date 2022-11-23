@@ -8,6 +8,8 @@ briser le fonctionnement du jeu (à l'exception des méthodes qui vous sont dema
 """
 from arene import Arene
 from de import De
+from joueur import Joueur
+
 
 class Gladeateur:
     """ Représente une partie du jeu.
@@ -178,7 +180,7 @@ class Gladeateur:
         self.joueur_index += 1
         if self.joueur_index % len(self.liste_joueurs) == 0:
             self.joueur_index = 0
-        while Joueur.numero_joueur = self.joueur_index and Joueur.est_elimine():
+        while self.joueur_en_cours().est_elimine():
             self.joueur_index += 1
 
     def calculer_victoire(self):
@@ -192,8 +194,12 @@ class Gladeateur:
         """
         # VOTRE CODE ICI
 
+
 arena = Arene(5, De(), 1)
-liste_player = ['james', 'roger', 'bernard']
-warrior = Gladeateur(liste_player, arena)
 
-
+joueurs = []
+des = []
+for i in range(3):
+    joueurs.append(Joueur(i + 1, des, arena))
+warrior = Gladeateur(joueurs, arena)
+print(warrior.changer_joueur())

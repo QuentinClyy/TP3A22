@@ -176,6 +176,8 @@ class Gladeateur:
         self.joueur_index += 1
         if self.joueur_index % len(self.liste_joueurs) == 0:
             self.joueur_index = 0
+        while self.joueur_en_cours().est_elimine():
+            self.joueur_index += 1
 
     def calculer_victoire(self):
         """
@@ -187,3 +189,9 @@ class Gladeateur:
             Joueur: Le joueur vainqueur (ou None en l'absence de victoire)
         """
         # VOTRE CODE ICI
+        liste_victoire = []
+        for joueur in self.liste_joueurs:
+            if not joueur.est_elimine():
+                liste_victoire.append(joueur)
+        if len(liste_victoire) == 1:
+            return liste_victoire[0]
