@@ -45,6 +45,8 @@ class Joueur:
             Lancer: Le lancer créé
         """
         # VOTRE CODE ICI
+        self.des.pop()
+        return Lancer(self, coordonnees, angle, puissance)
 
     def choisir_lancer(self):
         """
@@ -99,6 +101,12 @@ class Joueur:
             bool: True si l'entrée est L, False si T (None si invalide)
         """
         # VOTRE CODE ICI
+        if entree in ['L', 'l']:
+            return True
+        elif entree in ['T', 't']:
+            return False
+        else:
+            return None
 
     def traitement_coordonnees(self, entree):
         """
@@ -139,6 +147,10 @@ class Joueur:
             str: Le point cardinal, en majuscule (None si invalide)
         """
         # VOTRE CODE ICI
+        if entree.upper() in ANGLES.keys():
+            return entree.upper()
+        else:
+            return None
 
     def traitement_puissance(self, entree):
         """
@@ -155,6 +167,10 @@ class Joueur:
             int: L'entier représenté par l'entrée (None si invalide)
         """
         # VOTRE CODE ICI
+        if entree in [1, self.arene.dimension]:
+            return entree
+        else:
+            return None
 
     def choisir_continuer(self):
         """
@@ -242,6 +258,10 @@ class Joueur:
             bool: True si le joueur est éliminé, False sinon.
         """
         # VOTRE CODE ICI
+        if len(self.des) == 0:
+            return True
+        else:
+            return False
 
     def rendre_de(self, de):
         """
@@ -252,6 +272,8 @@ class Joueur:
             de (De): Le dé à ajouter
         """
         # VOTRE CODE ICI
+        de.ranger()
+        self.des.append(de)
 
     def table_rase(self):
         """
@@ -263,6 +285,10 @@ class Joueur:
             liste: La liste des lancers
         """
         # VOTRE CODE ICI
+        liste_lancer = []
+        for i in self.des:
+            liste_lancer.append(self.creer_lancer(self.piger_coordonnees(), self.piger_angle(), self.piger_puissance()))
+        return liste_lancer
 
     def __str__(self):
         """
