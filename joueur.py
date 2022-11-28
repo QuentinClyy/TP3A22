@@ -177,7 +177,7 @@ class Joueur:
             int: L'entier représenté par l'entrée (None si invalide)
         """
         # VOTRE CODE ICI
-        if int(entree) in range(1, self.arene.dimension):
+        if entree.isnumeric() and int(entree) in range(1, self.arene.dimension):
             return int(entree)
         else:
             return None

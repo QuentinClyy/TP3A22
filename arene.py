@@ -127,6 +127,7 @@ class Arene:
         """
         # VOTRE CODE ICI
         self.retirer_les_x()
+        print(self.des)
         self.compter_valeurs()
         self.retirer_correspondances(self.compter_valeurs(), joueur_en_cours)
         if self.correspondance_existe(self.compter_valeurs()):
@@ -145,12 +146,14 @@ class Arene:
         """
         # VOTRE CODE ICI
         emplacement_liste = []
-        for emplacement in list(self.des.keys()):
-            de = self.des[emplacement]
-            if de.valeur == 1:
+        for emplacement, de in self.des.items():
+            print(de.valeur)
+            if de.valeur == 'X':
                 emplacement_liste.append(emplacement)
         for emplacement in emplacement_liste:
-            self.des.pop(emplacement)
+            print(self.des)
+            self.retirer_de(emplacement)
+            print(self.des)
 
     def compter_valeurs(self):
         """
@@ -166,7 +169,8 @@ class Arene:
         # VOTRE CODE ICI
         comptes = {2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
         for de in self.des.values():
-            comptes[de.valeur] += 1
+            if not de.valeur == 'X':
+                comptes[de.valeur] += 1
         return comptes
 
     def retirer_correspondances(self, comptes, joueur_en_cours):
@@ -185,13 +189,14 @@ class Arene:
         """
         # VOTRE CODE ICI
         liste_emplacement = []
-        for emplacement in self.des.keys():
-            de = self.des[emplacement]
+        for emplacement, de in self.des.items():
             if comptes[de.valeur] > 1:
-                self.rendre_au_joueur(emplacement, joueur_en_cours)
                 liste_emplacement.append(emplacement)
         for emplacement in liste_emplacement:
-            self.des.pop(emplacement)
+            print(liste_emplacement)
+            self.rendre_au_joueur(emplacement, joueur_en_cours)
+            self.retirer_de(emplacement)
+            print(self.des)
 
     def correspondance_existe(self, comptes):
         """
