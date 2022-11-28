@@ -129,6 +129,16 @@ class Joueur:
             tuple: Coordonnées traitées (None si invalide)
         """
         # VOTRE CODE ICI
+        emplacement = ()
+        nombre_fois_virgule = entree.count(',')
+        if nombre_fois_virgule == 1:
+            for i in entree.split(', '):
+                if i.isnumeric():
+                    emplacement += (int(i),)
+            if self.arene.dans_arene(emplacement):
+                return emplacement
+        else:
+            return None
 
     def traitement_angle(self, entree):
         """
@@ -167,7 +177,7 @@ class Joueur:
             int: L'entier représenté par l'entrée (None si invalide)
         """
         # VOTRE CODE ICI
-        if entree in [1, self.arene.dimension]:
+        if entree.isinteger() and entree in [1, self.arene.dimension]:
             return entree
         else:
             return None

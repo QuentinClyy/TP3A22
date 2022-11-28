@@ -130,15 +130,14 @@ class Joueur:
             tuple: Coordonnées traitées (None si invalide)
         """
         # VOTRE CODE ICI                                                            #to work, waiting on dans_arene()
-        if ',' in entree:
-            tuple_entree = ()
-            for i in entree.split(','):
+        emplacement = ()
+        nombre_fois_virgule = entree.count(',')
+        if nombre_fois_virgule == 1:
+            for i in entree.split(', '):
                 if i.isnumeric():
-                    tuple_entree += (int(i),)
-                else:
-                    return None
-            if self.arene.dans_arene(tuple_entree):
-                return tuple_entree
+                    emplacement += (int(i),)
+            if self.arene.dans_arene(emplacement):
+                return emplacement
         else:
             return None
 
@@ -312,4 +311,3 @@ class Joueur:
 de_list = [None, None, None]
 arene = Arene(5, De(), 1)
 joueur = Joueur(1, de_list, arene)
-print(joueur.traitement_coordonnees('1,2'))
