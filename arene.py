@@ -50,8 +50,7 @@ class Arene:
         # VOTRE CODE ICI
         emplacement_x = emplacement[0]
         emplacement_y = emplacement[1]
-        return emplacement_x in range(0, (self.dimension - 1)) \
-               and emplacement_y in range(0, (self.dimension - 1))
+        return emplacement_x in range(0, self.dimension) and emplacement_y in range(0, self.dimension)
 
     def effectuer_lancer(self, lancer):
         """
@@ -127,7 +126,6 @@ class Arene:
         """
         # VOTRE CODE ICI
         self.retirer_les_x()
-        print(self.des)
         self.compter_valeurs()
         self.retirer_correspondances(self.compter_valeurs(), joueur_en_cours)
         if self.correspondance_existe(self.compter_valeurs()):
@@ -147,7 +145,6 @@ class Arene:
         # VOTRE CODE ICI
         emplacement_liste = []
         for emplacement, de in self.des.items():
-            print(de.valeur)
             if de.valeur == 1:
                 emplacement_liste.append(emplacement)
         for emplacement in emplacement_liste:
@@ -191,10 +188,7 @@ class Arene:
             if comptes[de.valeur] > 1:
                 liste_emplacement.append(emplacement)
         for emplacement in liste_emplacement:
-            print(liste_emplacement)
             self.rendre_au_joueur(emplacement, joueur_en_cours)
-            self.retirer_de(emplacement)
-            print(self.des)
 
     def correspondance_existe(self, comptes):
         """

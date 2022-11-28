@@ -53,3 +53,4 @@ class De:
         Met la valeur du dé à None.
         """
         self.valeur = None
+#termine
