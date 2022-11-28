@@ -35,7 +35,8 @@ class De:
         """
         # VOTRE CODE ICI
         if self.valeur == 1:
-            self.valeur = 'X'
+            string_valeur = 'X'
+            return string_valeur
         elif mode == 2:
             liste = ['⚁', '⚂', '⚃', '⚄', '⚅']
             return liste[int(self.valeur) - 2]

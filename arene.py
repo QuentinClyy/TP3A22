@@ -148,12 +148,10 @@ class Arene:
         emplacement_liste = []
         for emplacement, de in self.des.items():
             print(de.valeur)
-            if de.valeur == 'X':
+            if de.valeur == 1:
                 emplacement_liste.append(emplacement)
         for emplacement in emplacement_liste:
-            print(self.des)
             self.retirer_de(emplacement)
-            print(self.des)
 
     def compter_valeurs(self):
         """
