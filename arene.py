@@ -64,6 +64,9 @@ class Arene:
             lancer (Lancer): contient les informations sur le lancer à effectuer
         """
         # VOTRE CODE ICI
+        self.relancer_des_accroches(lancer.trajectoire)
+        emplacement_final = lancer.trajectoire[-1]
+        self.placer_nouveau_de(lancer.de, emplacement_final)
 
     def relancer_des_accroches(self, trajectoire):
         """
@@ -74,11 +77,9 @@ class Arene:
             trajectoire (list): Liste des coordonnées où l'on doit relancer
         """
         # VOTRE CODE ICI
-        i = 0
         for emplacement in trajectoire:
-            i += 1
-            if emplacement == list(self.des.keys())[1]:
-                list(self.des.values())[1].lancer()
+            if emplacement in list(self.des.keys()):
+                self.des[emplacement].lancer()
 
     def placer_nouveau_de(self, de, emplacement_final):
         """
@@ -145,10 +146,10 @@ class Arene:
         # VOTRE CODE ICI
         emplacement_liste = []
         for emplacement in list(self.des.keys()):
-            for de in list(self.des.values()):
-                if de.valeur == 1:
-                    emplacement_liste.append(emplacement)
-        for emplacement in self.des.keys():
+            de = self.des[emplacement]
+            if de.valeur == 1:
+                emplacement_liste.append(emplacement)
+        for emplacement in emplacement_liste:
             self.des.pop(emplacement)
 
     def compter_valeurs(self):
@@ -166,6 +167,7 @@ class Arene:
         comptes = {2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
         for de in self.des.values():
             comptes[de.valeur] += 1
+        return comptes
 
     def retirer_correspondances(self, comptes, joueur_en_cours):
         """
@@ -184,10 +186,10 @@ class Arene:
         # VOTRE CODE ICI
         liste_emplacement = []
         for emplacement in self.des.keys():
-            for de in self.des.values():
-                if comptes[de.valeur] > 1:
-                    joueur_en_cours.rendre_au_joueur()
-                    liste_emplacement.append(emplacement)
+            de = self.des[emplacement]
+            if comptes[de.valeur] > 1:
+                self.rendre_au_joueur(emplacement, joueur_en_cours)
+                liste_emplacement.append(emplacement)
         for emplacement in liste_emplacement:
             self.des.pop(emplacement)
 

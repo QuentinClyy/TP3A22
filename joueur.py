@@ -45,8 +45,8 @@ class Joueur:
             Lancer: Le lancer créé
         """
         # VOTRE CODE ICI
-        self.des.pop()
-        return Lancer(self, coordonnees, angle, puissance)
+        de_lancer = self.des.pop()
+        return Lancer(de_lancer, coordonnees, angle, puissance)
 
     def choisir_lancer(self):
         """
@@ -131,8 +131,8 @@ class Joueur:
         # VOTRE CODE ICI
         emplacement = ()
         nombre_fois_virgule = entree.count(',')
-        if nombre_fois_virgule == 1:
-            for i in entree.split(', '):
+        if nombre_fois_virgule == 1 and len(entree) == 3:
+            for i in entree.split(','):
                 if i.isnumeric():
                     emplacement += (int(i),)
             if self.arene.dans_arene(emplacement):
@@ -177,8 +177,8 @@ class Joueur:
             int: L'entier représenté par l'entrée (None si invalide)
         """
         # VOTRE CODE ICI
-        if entree.isinteger() and entree in [1, self.arene.dimension]:
-            return entree
+        if int(entree) in range(1, self.arene.dimension):
+            return int(entree)
         else:
             return None
 
