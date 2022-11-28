@@ -127,4 +127,3 @@ class Lancer:
         for coordonnee in self.trajectoire[1:]:
             s += ' -> ' + str(coordonnee)
         return s
-#termine

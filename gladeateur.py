@@ -195,4 +195,3 @@ class Gladeateur:
                 liste_victoire.append(joueur)
         if len(liste_victoire) == 1:
             return liste_victoire[0]
-#termine

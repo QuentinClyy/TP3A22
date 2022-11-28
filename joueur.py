@@ -308,4 +308,3 @@ class Joueur:
             str: la représentation en chaîne de caractères
         """
         return f"joueur {self.numero_joueur} ({len(self.des)} dés)"
-#termine

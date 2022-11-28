@@ -81,4 +81,3 @@ for i in range(n_joueurs):
 glad = Gladeateur(joueurs, arene)
 input("Appuyez sur Entrée pour débuter...")
 glad.jouer_partie()
-#termine
