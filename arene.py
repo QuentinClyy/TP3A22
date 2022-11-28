@@ -50,8 +50,6 @@ class Arene:
         # VOTRE CODE ICI
         emplacement_x = emplacement[0]
         emplacement_y = emplacement[1]
-        # return emplacement_x >= 0 and emplacement_x < self.dimension\
-        #        and emplacement_y >= 0 and emplacement_y < self.dimension
         return emplacement_x in range(0, (self.dimension - 1)) \
                and emplacement_y in range(0, (self.dimension - 1))
 
