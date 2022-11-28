@@ -48,6 +48,12 @@ class Arene:
             bool: True si l'emplacement est dans l'arène, False sinon
         """
         # VOTRE CODE ICI
+        emplacement_x = emplacement[0]
+        emplacement_y = emplacement[1]
+        # return emplacement_x >= 0 and emplacement_x < self.dimension\
+        #        and emplacement_y >= 0 and emplacement_y < self.dimension
+        return emplacement_x in range(0, (self.dimension - 1)) \
+               and emplacement_y in range(0, (self.dimension - 1))
 
     def effectuer_lancer(self, lancer):
         """
@@ -70,6 +76,11 @@ class Arene:
             trajectoire (list): Liste des coordonnées où l'on doit relancer
         """
         # VOTRE CODE ICI
+        i = 0
+        for emplacement in trajectoire:
+            i += 1
+            if emplacement == list(self.des.keys())[1]:
+                list(self.des.values())[1].lancer()
 
     def placer_nouveau_de(self, de, emplacement_final):
         """
@@ -85,6 +96,9 @@ class Arene:
             emplacement_final ((int, int)): Les coordonnées où ajouter le dé
         """
         # VOTRE CODE ICI
+        if self.dans_arene(emplacement_final):
+            de.lancer()
+            self.des[emplacement_final] = de
 
     def effectuer_plusieurs_lancers(self, liste_lancers):
         """
@@ -94,6 +108,8 @@ class Arene:
             liste_lancers (list): La liste de lancers à effectuer
         """
         # VOTRE CODE ICI
+        for lancer in liste_lancers:
+            self.effectuer_lancer(lancer)
 
     def rangement(self, joueur_en_cours):
         """
@@ -111,6 +127,13 @@ class Arene:
             bool: True si une correspondance a eu lieu, False sinon.
         """
         # VOTRE CODE ICI
+        self.retirer_les_x()
+        self.compter_valeurs()
+        self.retirer_correspondances(self.compter_valeurs(), joueur_en_cours)
+        if self.correspondance_existe(self.compter_valeurs()):
+            return True
+        else:
+            return False
 
     def retirer_les_x(self):
         """
@@ -122,6 +145,13 @@ class Arene:
         dans un dictionnaire en même temps que l'on itère dessus est déconseillé.
         """
         # VOTRE CODE ICI
+        emplacement_liste = []
+        for emplacement in list(self.des.keys()):
+            for de in list(self.des.values()):
+                if de.valeur == 1:
+                    emplacement_liste.append(emplacement)
+        for emplacement in self.des.keys():
+            self.des.pop(emplacement)
 
     def compter_valeurs(self):
         """
@@ -135,6 +165,9 @@ class Arene:
             dict: Le dictionnaire associant valeurs de dés et nombre d'occurence
         """
         # VOTRE CODE ICI
+        comptes = {2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+        for de in self.des.values():
+            comptes[de.valeur] += 1
 
     def retirer_correspondances(self, comptes, joueur_en_cours):
         """
@@ -151,6 +184,14 @@ class Arene:
 
         """
         # VOTRE CODE ICI
+        liste_emplacement = []
+        for emplacement in self.des.keys():
+            for de in self.des.values():
+                if comptes[de.valeur] > 1:
+                    joueur_en_cours.rendre_au_joueur()
+                    liste_emplacement.append(emplacement)
+        for emplacement in liste_emplacement:
+            self.des.pop(emplacement)
 
     def correspondance_existe(self, comptes):
         """
@@ -164,6 +205,10 @@ class Arene:
             bool: True si une valeur de dé est là plus d'une fois, False sinon.
         """
         # VOTRE CODE ICI
+        for i in comptes.values():
+            if i > 1:
+                return True
+        return False
 
     def est_vide(self):
         """
@@ -173,6 +218,10 @@ class Arene:
             bool: True si aucun dé n'est présent, False sinon.
         """
         # VOTRE CODE ICI
+        if self.des == {}:
+            return True
+        else:
+            return False
 
     def retirer_de(self, emplacement):
         """
@@ -182,6 +231,7 @@ class Arene:
             emplacement ((int, int)): L'emplacement du dé à éliminer.
         """
         # VOTRE CODE ICI
+        del self.des[emplacement]
 
     def rendre_au_joueur(self, emplacement, joueur):
         """
@@ -193,6 +243,8 @@ class Arene:
             joueur (Joueur): Le joueur à qui rendre le dé
         """
         # VOTRE CODE ICI
+        joueur.rendre_de(self.des[emplacement])
+        self.retirer_de(emplacement)
 
     def afficher_de(self, emplacement):
         """
